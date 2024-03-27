@@ -1,0 +1,6 @@
+flutter_native_splash:
+  color: "#FFFFFF"
+  color_dark: "#000000"
+  image_dark: assets/logos/t-store-splash-logo-white.png
+
+  web: false
