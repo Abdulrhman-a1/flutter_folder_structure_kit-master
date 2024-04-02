@@ -1,12 +1,10 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:t_store/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
-import '../../../../common/widgets/images/t_rounded_image.dart';
+import '../../../../common/widgets/layouts/grid_layout.dart';
 import '../../../../common/widgets/products/product_cards.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
 import 'widgets/home_appbar.dart';
@@ -37,6 +35,7 @@ class HomeScreen extends StatelessWidget {
                     text: 'Search in Store',
                     onTap: () {},
                   ),
+                  // Spaceing
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
                   ),
@@ -52,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                           showActionButton: false,
                           textColor: TColors.white,
                         ),
-
+                        // Spacing
                         const SizedBox(
                           height: TSizes.spaceBtwItems,
                         ),
@@ -78,10 +77,17 @@ class HomeScreen extends StatelessWidget {
                       TImages.promoBanner3,
                     ],
                   ),
+
+                  //Spacing
+                  const SizedBox(
+                    height: TSizes.spaceBtwSections,
+                  ),
+
                   //----- Popular Products
-                  TProductCardVertical(),
-
-
+                  TGridLayout(
+                    itemCount: 3,
+                    itemBuilder: (_, index) => TProductCardVertical(),
+                  )
                 ],
               ),
             ),
