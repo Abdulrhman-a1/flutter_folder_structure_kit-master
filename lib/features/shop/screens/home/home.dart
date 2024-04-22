@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:t_store/common/widgets/custom_shapes/containers/primary_header_container.dart';
+import 'package:t_store/features/shop/screens/all_products/all_products.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
 import '../../../../common/widgets/layouts/grid_layout.dart';
-import '../../../../common/widgets/products/product_cards.dart';
+import '../../../../common/widgets/products/product_cart/product_card_vertical.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
 import 'widgets/home_appbar.dart';
 import 'widgets/home_categories.dart';
@@ -26,9 +29,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   //----- Appbar
                   THomeAppbar(),
-                  const SizedBox(
-                    height: TSizes.spaceBtwSections,
-                  ),
+                  const SizedBox(height: TSizes.spaceBtwSections),
 
                   //----- Searchbar
                   TSearchContainer(
@@ -36,9 +37,7 @@ class HomeScreen extends StatelessWidget {
                     onTap: () {},
                   ),
                   // Spaceing
-                  const SizedBox(
-                    height: TSizes.spaceBtwSections,
-                  ),
+                  const SizedBox(height: TSizes.spaceBtwSections),
 
                   //----- Categories
                   Padding(
@@ -52,18 +51,19 @@ class HomeScreen extends StatelessWidget {
                           textColor: TColors.white,
                         ),
                         // Spacing
-                        const SizedBox(
-                          height: TSizes.spaceBtwItems,
-                        ),
+                        const SizedBox(height: TSizes.spaceBtwItems),
 
                         //----- Categories
                         THomeCategories(),
                       ],
                     ),
                   ),
+
+                  SizedBox(height: TSizes.spaceBtwSections),
                 ],
               ),
             ),
+
             // ----- Body
             Padding(
               padding: const EdgeInsets.all(TSizes.defaultSpace),
@@ -79,15 +79,21 @@ class HomeScreen extends StatelessWidget {
                   ),
 
                   //Spacing
-                  const SizedBox(
-                    height: TSizes.spaceBtwSections,
-                  ),
+                  const SizedBox(height: TSizes.spaceBtwSections),
+
+                  // Heading
+                  TSectionHeading(
+                      title: 'Popular Products',
+                      showActionButton: true,
+                      onPressed: () => Get.to(() => AllProducts())),
+
+                  //Spacing
+                  const SizedBox(height: TSizes.spaceBtwItems),
 
                   //----- Popular Products
                   TGridLayout(
-                    itemCount: 3,
-                    itemBuilder: (_, index) => TProductCardVertical(),
-                  )
+                      itemCount: 3,
+                      itemBuilder: (_, index) => TProductCardVertical()),
                 ],
               ),
             ),
