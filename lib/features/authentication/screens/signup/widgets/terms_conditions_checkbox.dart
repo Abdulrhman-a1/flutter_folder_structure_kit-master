@@ -14,17 +14,18 @@ class TermsAndConditionCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = SignupController.instance;
-
     final dark = THelperFunctions.isDarkMode(context);
     return Row(
       children: [
         SizedBox(
           width: 24,
           height: 24,
-          child: Obx(() => Checkbox(
-              value: controller.privacyPolicy.value,
-              onChanged: (value) => controller.privacyPolicy.value =
-                  !controller.privacyPolicy.value)),
+          child: Obx(
+            () => Checkbox(
+                value: controller.privacyPolicy.value,
+                onChanged: (value) => controller.privacyPolicy.value =
+                    !controller.privacyPolicy.value),
+          ),
         ),
         const SizedBox(
           width: TSizes.spaceBtwInputFields,

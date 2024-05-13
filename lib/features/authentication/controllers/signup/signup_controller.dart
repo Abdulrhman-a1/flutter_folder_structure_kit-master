@@ -15,7 +15,7 @@ class SignupController extends GetxController {
 
   // Variables
   final hidePassword = true.obs;
-  final privacyPolicy = true.obs;
+  final privacyPolicy = false.obs;
   final email = TextEditingController();
   final lastname = TextEditingController();
   final username = TextEditingController();
@@ -43,7 +43,6 @@ class SignupController extends GetxController {
       // Form Validation
       if (!signupFormKey.currentState!.validate()) {
         TFullScreenLoader.stopLoading();
-
         return;
       }
 
@@ -53,6 +52,7 @@ class SignupController extends GetxController {
             title: 'Accept Privacy Policy',
             message:
                 'In order to create account, you must have to read and accept the Privacy Policy & Trems of Use.');
+        TFullScreenLoader.stopLoading();
         return;
       }
 
@@ -85,15 +85,13 @@ class SignupController extends GetxController {
           message: 'Your account has been created! Verify email to continue');
 
       // Move to Verify Email Screen
-      Get.to(() => VerifyEmailScreen());
+      Get.to(() => VerifyEmailScreen(email: email.text.trim()));
 
       //
     } catch (e) {
       // Show soo Generic Error to the user
-      //TLoaders.errorSnackBar(title: 'On Snap!', message: e.toString());
-      TFullScreenLoader.stopLoading();
-    } finally {
-      //Remove Loader
+      TLoaders.errorSnackBar(title: 'On Snap!', message: e.toString());
+
       TFullScreenLoader.stopLoading();
     }
   }
